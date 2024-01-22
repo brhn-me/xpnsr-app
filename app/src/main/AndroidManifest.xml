@@ -19,7 +19,8 @@
             android:theme="@style/Theme.XPNSR">
 
         </activity>
-        <activity android:name=".TransactionListActivity"
+        <activity
+            android:name=".TransactionListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,6 +29,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".TransactionDetailActivity" />
+        <activity android:name=".AddTransactionActivity" />
     </application>
 
 </manifest>

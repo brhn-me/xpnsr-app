@@ -3,8 +3,10 @@ package com.brhn.xpnsr
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -15,6 +17,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -29,7 +32,6 @@ class TransactionDetailActivity : ComponentActivity() {
             XPNSRTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     TransactionDetail(transaction) {
-                        // Handle the back action
                         finish()
                     }
                 }
@@ -59,5 +61,14 @@ fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {
         Text("Amount: \$${transaction.amount}", fontSize = 18.sp)
         Text("Type: ${transaction.type}", fontSize = 18.sp)
         Text("Category: ${transaction.category}", fontSize = 18.sp)
+
+        Image(
+            painter = painterResource(id = R.drawable.receipt_sample),
+            contentDescription = "Transaction Image",
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(450.dp)
+                .padding(bottom = 16.dp)
+        )
     }
 }
