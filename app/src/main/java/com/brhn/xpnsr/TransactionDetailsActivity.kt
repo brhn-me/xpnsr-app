@@ -6,6 +6,10 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
@@ -24,7 +28,10 @@ class TransactionDetailActivity : ComponentActivity() {
         setContent {
             XPNSRTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    TransactionDetail(transaction)
+                    TransactionDetail(transaction) {
+                        // Handle the back action
+                        finish()
+                    }
                 }
             }
         }
@@ -32,13 +39,15 @@ class TransactionDetailActivity : ComponentActivity() {
 }
 
 @Composable
-fun TransactionDetail(transaction: Transaction) {
+fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {
     Column(
         modifier = Modifier
             .fillMaxWidth()
             .padding(16.dp)
     ) {
-        
+        IconButton(onClick = onBack) {
+            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+        }
         Text(
             text = "Transaction Details",
             fontWeight = FontWeight.Bold,
