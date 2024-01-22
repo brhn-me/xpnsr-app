@@ -40,7 +40,7 @@ class TransactionListActivity : ComponentActivity() {
                         TransactionList(
                             transactions = getSampleTransactions(),
                             context = this@TransactionListActivity,
-                            modifier = Modifier.padding(innerPadding) // Apply the padding here
+                            modifier = Modifier.padding(innerPadding)
                         )
                     }
                 }
