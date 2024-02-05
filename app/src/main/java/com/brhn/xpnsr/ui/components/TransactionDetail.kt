@@ -1,10 +1,6 @@
-package com.brhn.xpnsr
+package com.brhn.xpnsr.ui.components
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,8 +11,6 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -25,24 +19,10 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.brhn.xpnsr.ui.theme.XPNSRTheme
+import com.brhn.xpnsr.R
+import com.brhn.xpnsr.ui.activities.ReportActivity
+import com.brhn.xpnsr.models.Transaction
 
-class TransactionDetailActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val transaction = intent.getSerializableExtra("TRANSACTION_DATA") as Transaction
-
-        setContent {
-            XPNSRTheme {
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    TransactionDetail(transaction) {
-                        finish()
-                    }
-                }
-            }
-        }
-    }
-}
 
 @Composable
 fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {

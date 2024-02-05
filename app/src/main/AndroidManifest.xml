@@ -13,7 +13,7 @@
         android:theme="@style/Theme.XPNSR"
         tools:targetApi="31">
         <activity
-            android:name=".TransactionListActivity"
+            android:name=".ui.activities.TransactionListActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".TransactionDetailActivity" />
-        <activity android:name=".AddTransactionActivity" />
-        <activity android:name=".ReportActivity" />
+        <activity android:name=".ui.activities.TransactionDetailsActivity" />
+        <activity android:name=".ui.activities.AddTransactionActivity" />
+        <activity android:name=".ui.activities.ReportActivity" />
     </application>
 
 </manifest>

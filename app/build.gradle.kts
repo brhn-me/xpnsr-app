@@ -61,6 +61,8 @@ dependencies {
     implementation("androidx.compose.material3:material3")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("androidx.room:room-common:2.6.1")
+    implementation("androidx.room:room-ktx:2.6.1")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -68,4 +70,12 @@ dependencies {
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-tooling")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
+
+    val sqlite_version = "2.4.0"
+    // Java language implementation
+    implementation("androidx.sqlite:sqlite:$sqlite_version")
+    // Kotlin
+    implementation("androidx.sqlite:sqlite-ktx:$sqlite_version")
+    // Implementation of the AndroidX SQLite interfaces via the Android framework APIs.
+    implementation("androidx.sqlite:sqlite-framework:$sqlite_version")
 }
