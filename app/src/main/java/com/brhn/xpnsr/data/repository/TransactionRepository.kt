@@ -10,4 +10,9 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
     suspend fun insert(transaction: Transaction) {
         transactionDao.insert(transaction)
     }
+
+    suspend fun isDatabaseEmpty(): Boolean {
+        return transactionDao.countTransactions() == 0
+    }
+
 }

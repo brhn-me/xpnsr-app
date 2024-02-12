@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
 }
 
 android {
@@ -78,4 +79,18 @@ dependencies {
     implementation("androidx.sqlite:sqlite-ktx:$sqlite_version")
     // Implementation of the AndroidX SQLite interfaces via the Android framework APIs.
     implementation("androidx.sqlite:sqlite-framework:$sqlite_version")
+
+    // Kotlin Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0") // Use the latest version
+
+    // Lifecycle ViewModel KTX
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1") // Use the latest version
+
+    // Room Database
+    implementation("androidx.room:room-runtime:2.6.1")
+
+    kapt("androidx.room:room-compiler:2.6.1")
+
+    // Optional - Kotlin Extensions and Coroutines support for Room
+    implementation("androidx.room:room-ktx:2.6.1")
 }

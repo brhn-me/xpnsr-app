@@ -5,6 +5,7 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.brhn.xpnsr.data.db.AppDatabase
+import com.brhn.xpnsr.data.getSampleTransactions
 import com.brhn.xpnsr.data.repository.TransactionRepository
 import com.brhn.xpnsr.models.Transaction
 import kotlinx.coroutines.launch
@@ -22,4 +23,15 @@ class TransactionViewModel(application: Application) : AndroidViewModel(applicat
     fun insert(transaction: Transaction) = viewModelScope.launch {
         repository.insert(transaction)
     }
+
+    fun initializeDatabase() = viewModelScope.launch {
+        if (repository.isDatabaseEmpty()) {
+            val sampleTransactions =
+                getSampleTransactions()
+            sampleTransactions.forEach { transaction ->
+                insert(transaction)
+            }
+        }
+    }
 }
+

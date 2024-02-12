@@ -16,8 +16,6 @@ abstract class AppDatabase : RoomDatabase() {
     abstract fun transactionDao(): TransactionDao
 
     companion object {
-        // Singleton prevents multiple instances of database opening at the
-        // same time.
         @Volatile
         private var INSTANCE: AppDatabase? = null
 
@@ -27,9 +25,8 @@ abstract class AppDatabase : RoomDatabase() {
                     context.applicationContext,
                     AppDatabase::class.java,
                     "app_database"
-                ).build()
+                ).allowMainThreadQueries().build()
                 INSTANCE = instance
-                // return instance
                 instance
             }
         }

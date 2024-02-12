@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
@@ -16,10 +17,14 @@ import androidx.compose.ui.Modifier
 import com.brhn.xpnsr.ui.components.TransactionList
 import com.brhn.xpnsr.data.getSampleTransactions
 import com.brhn.xpnsr.ui.theme.XPNSRTheme
+import com.brhn.xpnsr.viewmodels.TransactionViewModel
 
 class TransactionListActivity : ComponentActivity() {
+    private val transactionViewModel: TransactionViewModel by viewModels();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        transactionViewModel.initializeDatabase()
+
         setContent {
             XPNSRTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {

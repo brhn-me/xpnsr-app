@@ -49,6 +49,7 @@ fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {
         Text("Type: ${transaction.type}", fontSize = 18.sp)
         Text("Category: ${transaction.category}", fontSize = 18.sp)
 
+
         Image(
             painter = painterResource(id = R.drawable.receipt_sample),
             contentDescription = "Transaction Image",

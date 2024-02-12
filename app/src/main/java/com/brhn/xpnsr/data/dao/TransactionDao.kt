@@ -9,11 +9,11 @@ import com.brhn.xpnsr.models.Transaction
 @Dao
 interface TransactionDao {
     @Insert
-    suspend fun insert(transaction: Transaction)
+    fun insert(transaction: Transaction)
 
     @Query("SELECT * FROM transactions")
     fun getAllTransactions(): LiveData<List<Transaction>>
 
-    @Query("SELECT EXISTS(SELECT 1 FROM transactions LIMIT 1)")
-    suspend fun isDatabaseEmpty(): Boolean
+    @Query("SELECT COUNT(*) FROM transactions")
+    suspend fun countTransactions(): Int
 }
