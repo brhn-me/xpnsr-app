@@ -11,7 +11,7 @@ interface TransactionDao {
     @Insert
     fun insert(transaction: Transaction)
 
-    @Query("SELECT * FROM transactions")
+    @Query("SELECT * FROM transactions ORDER BY date DESC")
     fun getAllTransactions(): LiveData<List<Transaction>>
 
     @Query("SELECT COUNT(*) FROM transactions")

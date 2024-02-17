@@ -13,6 +13,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Modifier
 import com.brhn.xpnsr.ui.components.TransactionList
 import com.brhn.xpnsr.data.getSampleTransactions
@@ -23,9 +24,11 @@ class TransactionListActivity : ComponentActivity() {
     private val transactionViewModel: TransactionViewModel by viewModels();
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        transactionViewModel.initializeDatabase()
+        //transactionViewModel.initializeDatabase()
 
         setContent {
+            val transactions =
+                transactionViewModel.allTransactions.observeAsState(initial = emptyList()).value
             XPNSRTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
                     Scaffold(
@@ -39,7 +42,7 @@ class TransactionListActivity : ComponentActivity() {
                         }
                     ) { innerPadding ->
                         TransactionList(
-                            transactions = getSampleTransactions(),
+                            transactions = transactions,
                             context = this@TransactionListActivity,
                             modifier = Modifier.padding(innerPadding)
                         )

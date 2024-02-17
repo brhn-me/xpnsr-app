@@ -93,4 +93,7 @@ dependencies {
 
     // Optional - Kotlin Extensions and Coroutines support for Room
     implementation("androidx.room:room-ktx:2.6.1")
+
+    // LiveData integration with Compose
+    implementation("androidx.compose.runtime:runtime-livedata")
 }

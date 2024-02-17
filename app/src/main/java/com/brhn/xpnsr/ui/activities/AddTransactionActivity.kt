@@ -6,6 +6,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import com.brhn.xpnsr.data.db.AppDatabase
+import com.brhn.xpnsr.data.repository.TransactionRepository
 import com.brhn.xpnsr.models.Transaction
 import com.brhn.xpnsr.models.TransactionType
 import com.brhn.xpnsr.ui.components.TransactionForm
@@ -16,12 +17,17 @@ class AddTransactionActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             XPNSRTheme {
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    TransactionForm {
+                // Assuming you have a method getDatabase() that returns the AppDatabase instance
+                val appDatabase = AppDatabase.getDatabase(context = this)
+                val transactionDao = appDatabase.transactionDao()
+                val transactionRepository = TransactionRepository(transactionDao)
 
-                        AppDatabase.getDatabase(this).transactionDao().insert(Transaction(0, "Groceries", "01/01/2024", 50.0, TransactionType.EXPENSE, "Groceries"))
-                        finish()
-                    }
+                Surface(color = MaterialTheme.colorScheme.background) {
+                    TransactionForm(
+                        onBack = { finish() },
+                        transactionRepository = transactionRepository,
+                        onTransactionAdded = { finish() }
+                    )
                 }
             }
         }
