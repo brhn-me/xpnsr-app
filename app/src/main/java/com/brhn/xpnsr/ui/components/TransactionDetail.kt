@@ -22,6 +22,7 @@ import androidx.compose.ui.unit.sp
 import com.brhn.xpnsr.R
 import com.brhn.xpnsr.ui.activities.ReportActivity
 import com.brhn.xpnsr.models.Transaction
+import com.brhn.xpnsr.utils.NotificationUtil
 
 
 @Composable
@@ -59,6 +60,20 @@ fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {
                 .padding(bottom = 16.dp)
         )
 
+
+
+        Button(
+            onClick = {
+                NotificationUtil().apply {
+                    createNotificationChannel(context)
+                    showNotification(context)
+                }
+            },
+            modifier = Modifier.padding(top = 16.dp)
+        ) {
+            Text("Show Notification")
+        }
+
         Button(
             onClick = {
                 val intent = Intent(context, ReportActivity::class.java)
@@ -66,7 +81,7 @@ fun TransactionDetail(transaction: Transaction, onBack: () -> Unit) {
             },
             modifier = Modifier.padding(top = 16.dp)
         ) {
-            Text("Go to Report")
+            Text("Go to Reports")
         }
     }
 }

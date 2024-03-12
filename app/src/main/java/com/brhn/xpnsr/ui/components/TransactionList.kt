@@ -35,6 +35,7 @@ fun TransactionList(
             TransactionItem(transaction) {
                 val intent = Intent(context, TransactionDetailsActivity::class.java)
                 intent.putExtra("TRANSACTION_DATA", transaction)
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 context.startActivity(intent)
             }
         }
