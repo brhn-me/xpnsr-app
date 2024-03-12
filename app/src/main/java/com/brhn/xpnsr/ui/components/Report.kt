@@ -1,10 +1,6 @@
-package com.brhn.xpnsr
+package com.brhn.xpnsr.ui.components
 
-import android.annotation.SuppressLint
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,42 +17,17 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.brhn.xpnsr.ui.theme.XPNSRTheme
+import com.brhn.xpnsr.ui.activities.AddTransactionActivity
+import com.brhn.xpnsr.ui.activities.TransactionListActivity
 
-class ReportActivity : ComponentActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        setContent {
-            XPNSRTheme {
-                Surface(color = MaterialTheme.colorScheme.background) {
-                    Report() {
-                        finish()
-                    }
-                }
-            }
-        }
-    }
-
-    @SuppressLint("MissingSuperCall")
-    override fun onBackPressed() {
-        val intent = Intent(this, TransactionListActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        startActivity(intent)
-        finish()
-    }
-}
 
 @Composable
 fun Report(onBack: () -> Unit) {
@@ -81,9 +52,11 @@ fun Report(onBack: () -> Unit) {
 
     }
 
-    Row(modifier = Modifier
-        .fillMaxWidth()
-        .padding(top = 16.dp)) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(top = 16.dp)
+    ) {
         Button(
             onClick = {
                 context.startActivity(Intent(context, TransactionListActivity::class.java))
