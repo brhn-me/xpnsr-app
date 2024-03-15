@@ -76,6 +76,8 @@ dependencies {
     implementation("com.google.maps.android:maps-compose-widgets:4.3.3")
     implementation("com.google.android.gms:play-services-location:21.2.0")
     implementation("com.google.firebase:firebase-messaging-ktx:23.4.1")
+    implementation("androidx.media3:media3-common:1.3.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.7.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -110,6 +112,16 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
 
     implementation("androidx.work:work-runtime-ktx:2.9.0")
+
+    implementation("com.google.android.exoplayer:exoplayer:2.19.1")
+
+    implementation("org.osmdroid:osmdroid-android:6.1.10")
+
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+
+    implementation("io.coil-kt:coil-compose:2.1.0")
+    // Gson converter for Retrofit
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // firebase
     implementation(platform("com.google.firebase:firebase-bom:32.7.4"))

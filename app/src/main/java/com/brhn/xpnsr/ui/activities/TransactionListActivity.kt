@@ -155,14 +155,21 @@ fun MainScreen(transactionViewModel: TransactionViewModel, applicationContext: C
                 NavigationDrawerItem(
                     label = { Text(text = "Demo (Video Playback)") },
                     selected = false,
-                    onClick = { /*TODO*/ }
+                    onClick = {
+                        val intent = Intent(applicationContext, VideoPlayActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        applicationContext.startActivity(intent)
+                    }
                 )
 
                 NavigationDrawerItem(
-                    label = { Text(text = "Sensor Use") },
+                    label = { Text(text = "Sensor and Notifications") },
                     selected = false,
                     onClick = {
-
+                        val intent =
+                            Intent(applicationContext, NotificationSensorActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        applicationContext.startActivity(intent)
                     }
                 )
 
@@ -170,7 +177,19 @@ fun MainScreen(transactionViewModel: TransactionViewModel, applicationContext: C
                     label = { Text(text = "API Call") },
                     selected = false,
                     onClick = {
+                        val intent = Intent(applicationContext, ApiCallActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        applicationContext.startActivity(intent)
+                    }
+                )
 
+                NavigationDrawerItem(
+                    label = { Text(text = "Animation") },
+                    selected = false,
+                    onClick = {
+                        val intent = Intent(applicationContext, AnimationActivity::class.java)
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        applicationContext.startActivity(intent)
                     }
                 )
                 // ...other drawer items
