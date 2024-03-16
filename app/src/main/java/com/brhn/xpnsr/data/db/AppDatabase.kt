@@ -7,7 +7,11 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.brhn.xpnsr.data.converters.TransactionTypeConverter
 import com.brhn.xpnsr.data.dao.TransactionDao
+import com.brhn.xpnsr.data.getSampleTransactions
 import com.brhn.xpnsr.models.Transaction
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 @Database(entities = [Transaction::class], version = 1, exportSchema = false)
@@ -30,7 +34,20 @@ abstract class AppDatabase : RoomDatabase() {
                 instance
             }
         }
+
+        fun prepopulateIfEmpty(context: Context) {
+            CoroutineScope(Dispatchers.IO).launch {
+                val database = getDatabase(context)
+                val transactionDao = database.transactionDao()
+
+                if (transactionDao.countTransactions() == 0) { // Assuming this method exists
+                    transactionDao.insertAll(getSampleTransactions())
+                }
+            }
+        }
     }
+
+
 }
 
 

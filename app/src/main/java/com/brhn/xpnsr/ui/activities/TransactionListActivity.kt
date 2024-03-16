@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.dp
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
+import com.brhn.xpnsr.data.db.AppDatabase
 import com.brhn.xpnsr.ui.components.TransactionList
 import com.brhn.xpnsr.viewmodels.TransactionViewModel
 import com.brhn.xpnsr.workers.NotificationWorker
@@ -51,7 +52,7 @@ class TransactionListActivity : ComponentActivity() {
         setupSplashScreen(splashScreen = splashScreen)
 
         super.onCreate(savedInstanceState)
-
+        AppDatabase.prepopulateIfEmpty(this)
         schedulePeriodicWork()
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener { task ->

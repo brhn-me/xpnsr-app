@@ -37,13 +37,13 @@ class ProfilePhotoActivity : ComponentActivity() {
                 }
             }
 
-        setContent {
-            ProfilePhotoScreen(viewModel) {
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.type = "image/*"
-                pickImageResultLauncher.launch(intent)
-            }
-        }
+//        setContent {
+//            ProfilePhotoScreen(viewModel) {
+//                val intent = Intent(Intent.ACTION_PICK)
+//                intent.type = "image/*"
+//                pickImageResultLauncher.launch(intent)
+//            }
+//        }
     }
 
     private fun saveImageToInternalStorage(uri: Uri): Uri? {

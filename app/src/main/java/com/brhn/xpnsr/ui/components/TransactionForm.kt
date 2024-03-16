@@ -3,18 +3,22 @@ package com.brhn.xpnsr.ui.components
 import android.app.DatePickerDialog
 import android.content.Intent
 import android.widget.Toast
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
@@ -29,9 +33,12 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.brhn.xpnsr.data.repository.CategoryRepository
 import com.brhn.xpnsr.data.repository.TransactionRepository
+import com.brhn.xpnsr.models.Category
 import com.brhn.xpnsr.models.Transaction
 import com.brhn.xpnsr.models.TransactionType
 import com.brhn.xpnsr.ui.activities.ReportActivity
@@ -56,7 +63,6 @@ fun TransactionForm(
     val (name, setName) = remember { mutableStateOf("") }
     val (date, setDate) = remember { mutableStateOf(today) }
     val (amount, setAmount) = remember { mutableStateOf("") }
-    val (type, setType) = remember { mutableStateOf(TransactionType.EXPENSE) }
     val (category, setCategory) = remember { mutableStateOf("") }
 
     val calendar = Calendar.getInstance()
@@ -70,6 +76,9 @@ fun TransactionForm(
         calendar.get(Calendar.MONTH),
         calendar.get(Calendar.DAY_OF_MONTH)
     )
+
+    val (selectedCategory, setSelectedCategory) = remember { mutableStateOf<Category?>(null) }
+    val (type, setType) = remember { mutableStateOf(TransactionType.EXPENSE) }
 
     Column {
         IconButton(onClick = onBack) {
@@ -131,7 +140,10 @@ fun TransactionForm(
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     RadioButton(
                         selected = type == transactionType,
-                        onClick = { setType(transactionType) }
+                        onClick = {
+                            setType(transactionType)
+                            setSelectedCategory(null) // Reset selected category on type change
+                        }
                     )
                     Text(
                         text = transactionType.name,
@@ -140,10 +152,40 @@ fun TransactionForm(
                 }
             }
             Spacer(modifier = Modifier.height(8.dp))
-            OutlinedTextField(
-                value = category,
-                onValueChange = setCategory,
-                label = { Text("Category") })
+
+            Text(text = "Category", style = MaterialTheme.typography.bodyLarge)
+            val filteredCategories = CategoryRepository.getCategoriesByType(type)
+
+            // Using a horizontal scroll row for categories
+            Row(
+                modifier = Modifier
+                    .horizontalScroll(rememberScrollState())
+                    .padding(top = 8.dp),
+            ) {
+                filteredCategories.forEach { category ->
+                    val isSelected = selectedCategory == category
+                    Button(
+                        onClick = {
+                            setSelectedCategory(category)
+                            setCategory(category.name)
+                        },
+                        modifier = Modifier.padding(end = 8.dp),
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.secondaryContainer,
+                            contentColor = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer
+                        )
+                    ) {
+                        Icon(
+                            painter = painterResource(id = category.icon),
+                            contentDescription = category.name,
+                            tint = if (isSelected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSecondaryContainer // Adjust icon tint based on selection
+                        )
+                        Spacer(Modifier.width(8.dp))
+                        Text(text = category.name)
+                    }
+                }
+            }
+
             Spacer(modifier = Modifier.height(16.dp))
 
             Button(onClick = {

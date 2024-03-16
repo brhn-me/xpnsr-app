@@ -30,9 +30,9 @@ fun ProfilePhotoScreen(viewModel: ProfileViewModel = viewModel()) {
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center
     ) {
-        Button(onClick = { (context as? ProfilePhotoActivity)?.selectImage() }) {
-            Text("Select Profile Picture", fontSize = 16.sp)
-        }
+//        Button(onClick = { (context as? ProfilePhotoActivity)?.selectImage() }) {
+//            Text("Select Profile Picture", fontSize = 16.sp)
+//        }
         Spacer(modifier = Modifier.height(20.dp))
         profileImageUri?.let { uri ->
             Image(
