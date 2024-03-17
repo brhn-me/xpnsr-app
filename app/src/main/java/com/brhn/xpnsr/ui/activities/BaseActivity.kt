@@ -7,13 +7,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.List
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Face
+import androidx.compose.material.icons.filled.List
+import androidx.compose.material.icons.filled.MailOutline
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.icons.filled.Notifications
+import androidx.compose.material.icons.filled.Place
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material3.DrawerState
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.NavigationDrawerItem
@@ -24,6 +34,7 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -58,21 +69,29 @@ abstract class BaseActivity : ComponentActivity() {
                         Icon(Icons.Filled.Menu, contentDescription = "Menu")
                     }
                 })
-            }, content = { padding ->
+            }, floatingActionButton = FabContent() ?: {}, content = { padding ->
                 ScreenContent(modifier = Modifier.padding(padding))
             })
         }
     }
 
     @Composable
+    open fun FabContent(): @Composable (() -> Unit)? = null
+
+    @Composable
     fun AppDrawer(
         applicationContext: Context, scope: CoroutineScope, drawerState: DrawerState
     ) {
         ModalDrawerSheet {
-            Text("XPNSR", modifier = Modifier.padding(16.dp))
+            Text(
+                text = "XPNSR",
+                style = MaterialTheme.typography.headlineSmall,
+                modifier = Modifier.padding(16.dp)
+            )
             HorizontalDivider()
             DrawerItem(
                 "Transactions",
+                Icons.Filled.List,
                 TransactionsActivity::class.java,
                 applicationContext,
                 scope,
@@ -80,18 +99,32 @@ abstract class BaseActivity : ComponentActivity() {
             )
             DrawerItem(
                 "Add Transaction",
+                Icons.Filled.AddCircle,
                 TransactionActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState
             )
             HorizontalDivider()
-            DrawerItem("Report", ReportActivity::class.java, applicationContext, scope, drawerState)
             DrawerItem(
-                "Locations", MapViewActivity::class.java, applicationContext, scope, drawerState
+                "Report",
+                Icons.Filled.MailOutline,
+                ReportActivity::class.java,
+                applicationContext,
+                scope,
+                drawerState
+            )
+            DrawerItem(
+                "Locations",
+                Icons.Filled.Place,
+                MapViewActivity::class.java,
+                applicationContext,
+                scope,
+                drawerState
             )
             DrawerItem(
                 "Profile Photo",
+                Icons.Filled.AccountCircle,
                 ProfilePhotoActivity::class.java,
                 applicationContext,
                 scope,
@@ -99,6 +132,7 @@ abstract class BaseActivity : ComponentActivity() {
             )
             DrawerItem(
                 "Video Playback",
+                Icons.Filled.PlayArrow,
                 VideoPlayActivity::class.java,
                 applicationContext,
                 scope,
@@ -106,14 +140,27 @@ abstract class BaseActivity : ComponentActivity() {
             )
             DrawerItem(
                 "Sensor and Notifications",
+                Icons.Filled.Notifications,
                 NotificationSensorActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState
             )
-            DrawerItem("API", ApiCallActivity::class.java, applicationContext, scope, drawerState)
             DrawerItem(
-                "Animation", AnimationActivity::class.java, applicationContext, scope, drawerState
+                "API",
+                Icons.Filled.MailOutline,
+                ApiCallActivity::class.java,
+                applicationContext,
+                scope,
+                drawerState
+            )
+            DrawerItem(
+                "Animation",
+                Icons.Filled.Face,
+                AnimationActivity::class.java,
+                applicationContext,
+                scope,
+                drawerState
             )
         }
     }
@@ -121,18 +168,22 @@ abstract class BaseActivity : ComponentActivity() {
     @Composable
     fun DrawerItem(
         text: String,
+        icon: ImageVector,
         activity: Class<*>,
         context: Context,
         scope: CoroutineScope,
         drawerState: DrawerState
     ) {
-        NavigationDrawerItem(label = { Text(text = text) }, selected = false, onClick = {
-            context.startActivity(
-                Intent(
-                    context, activity
-                ).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
-            )
-            scope.launch { drawerState.close() }
-        })
+        NavigationDrawerItem(label = { Text(text = text) },
+            icon = { Icon(imageVector = icon, contentDescription = null) },
+            selected = false,
+            onClick = {
+                context.startActivity(
+                    Intent(
+                        context, activity
+                    ).setFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP)
+                )
+                scope.launch { drawerState.close() }
+            })
     }
 }

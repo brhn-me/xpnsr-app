@@ -73,11 +73,11 @@ class TransactionActivity : BaseActivity() {
     @Composable
     override fun ScreenContent(modifier: Modifier) {
         val transaction by viewModel.transaction.observeAsState()
-        TransactionForm(transactionId, transaction, onSave = {
-            finish()
-        }, onDelete = {
-            finish()
-        })
+        TransactionForm(transactionId, transaction,
+            onSave = { finish() },
+            onCancel = { finish() },
+            onDelete = { finish() }
+        )
     }
 
     override fun getAppBarTitle(): String {
@@ -88,6 +88,7 @@ class TransactionActivity : BaseActivity() {
     fun TransactionForm(
         transactionId: Long?, transaction: Transaction?,
         onSave: () -> Unit,
+        onCancel: () -> Unit,
         onDelete: () -> Unit
     ) {
         val sdf = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
@@ -206,26 +207,40 @@ class TransactionActivity : BaseActivity() {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(onClick = {
-                    val parsedAmount = amount.toDoubleOrNull()
-                    if (parsedAmount != null) {
-                        val t = Transaction(
-                            id = transactionId ?: 0,
-                            name = name,
-                            date = date,
-                            amount = parsedAmount,
-                            type = type,
-                            category = category
-                        )
-                        viewModel.saveTransaction(t)
-                        Toast.makeText(context, "Saved transaction", Toast.LENGTH_SHORT).show()
-                        onSave()
-                    } else {
-                        Toast.makeText(context, "Invalid amount", Toast.LENGTH_SHORT).show()
+                Row {
+                    Button(onClick = {
+                        val parsedAmount = amount.toDoubleOrNull()
+                        if (parsedAmount != null) {
+                            val t = Transaction(
+                                id = transactionId ?: 0,
+                                name = name,
+                                date = date,
+                                amount = parsedAmount,
+                                type = type,
+                                category = category
+                            )
+                            viewModel.saveTransaction(t)
+                            Toast.makeText(context, "Saved transaction", Toast.LENGTH_SHORT).show()
+                            onSave()
+                        } else {
+                            Toast.makeText(context, "Invalid amount", Toast.LENGTH_SHORT).show()
+                        }
+                    }) {
+                        Text("Save")
                     }
-                }) {
-                    Text("Save")
+                    Spacer(modifier = Modifier.width(8.dp))
+                    OutlinedButton(
+                        onClick = {
+                            // Handle cancel action
+                            onCancel()
+                        },
+                        colors = ButtonDefaults.outlinedButtonColors(contentColor = MaterialTheme.colorScheme.secondary)
+                    ) {
+                        Text("Cancel")
+                    }
                 }
+
+                Spacer(modifier = Modifier.weight(1f))
 
                 if (transactionId != null) {
                     Button(
