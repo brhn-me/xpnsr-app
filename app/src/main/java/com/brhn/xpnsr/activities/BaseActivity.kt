@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.ui.activities
+package com.brhn.xpnsr.activities
 
 import android.content.Context
 import android.content.Intent
@@ -7,9 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.List
 import androidx.compose.material.icons.filled.AccountCircle
-import androidx.compose.material.icons.filled.AddCircle
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.List
 import androidx.compose.material.icons.filled.MailOutline
@@ -97,15 +95,7 @@ abstract class BaseActivity : ComponentActivity() {
                 scope,
                 drawerState
             )
-            DrawerItem(
-                "Add Transaction",
-                Icons.Filled.AddCircle,
-                TransactionActivity::class.java,
-                applicationContext,
-                scope,
-                drawerState
-            )
-            HorizontalDivider()
+
             DrawerItem(
                 "Report",
                 Icons.Filled.MailOutline,
@@ -114,14 +104,19 @@ abstract class BaseActivity : ComponentActivity() {
                 scope,
                 drawerState
             )
+
             DrawerItem(
                 "Locations",
                 Icons.Filled.Place,
-                MapViewActivity::class.java,
+                LocationsActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState
             )
+
+            HorizontalDivider()
+
+
             DrawerItem(
                 "Profile Photo",
                 Icons.Filled.AccountCircle,
@@ -133,31 +128,33 @@ abstract class BaseActivity : ComponentActivity() {
             DrawerItem(
                 "Video Playback",
                 Icons.Filled.PlayArrow,
-                VideoPlayActivity::class.java,
+                VideoPlayBackActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState
             )
             DrawerItem(
-                "Sensor and Notifications",
-                Icons.Filled.Notifications,
-                NotificationSensorActivity::class.java,
-                applicationContext,
-                scope,
-                drawerState
-            )
-            DrawerItem(
-                "API",
+                "API Calls",
                 Icons.Filled.MailOutline,
                 ApiCallActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState
             )
+
             DrawerItem(
                 "Animation",
                 Icons.Filled.Face,
                 AnimationActivity::class.java,
+                applicationContext,
+                scope,
+                drawerState
+            )
+
+            DrawerItem(
+                "Sensor and Notifications",
+                Icons.Filled.Notifications,
+                NotificationSensorActivity::class.java,
                 applicationContext,
                 scope,
                 drawerState

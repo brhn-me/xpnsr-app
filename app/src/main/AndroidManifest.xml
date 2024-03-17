@@ -44,7 +44,7 @@
         <!-- [END fcm_default_icon] -->
         <!-- [START fcm_default_channel] -->
         <activity
-            android:name=".ui.activities.TransactionsActivity"
+            android:name=".activities.TransactionsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -52,18 +52,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activities.TransactionViewActivity" />
-        <activity android:name=".ui.activities.TransactionDetailsActivity" />
-        <activity android:name=".ui.activities.TransactionActivity" />
-        <activity android:name=".ui.activities.ReportActivity" />
-        <activity android:name=".ui.activities.MapViewActivity" />
-        <activity android:name=".ui.activities.ProfilePhotoActivityOld" />
-        <activity android:name=".ui.activities.ProfilePhotoActivity" />
-        <activity android:name=".ui.activities.VideoPlayActivity" />
-        <activity android:name=".ui.activities.AnimationActivity" />
-        <activity android:name=".ui.activities.ApiCallActivity" />
-        <activity android:name=".ui.activities.TransactionListActivity" />
-        <activity android:name=".ui.activities.TransactionsActivity2" />
+        <activity android:name=".activities.TransactionActivity" />
+        <activity android:name=".activities.ReportActivity" />
+        <activity android:name=".activities.LocationsActivity" />
+        <activity android:name=".activities.ProfilePhotoActivity" />
+        <activity android:name=".activities.VideoPlayBackActivity" />
+        <activity android:name=".activities.AnimationActivity" />
+        <activity android:name=".activities.ApiCallActivity" />
+        <activity android:name=".activities.NotificationSensorActivity" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

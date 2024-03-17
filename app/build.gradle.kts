@@ -49,8 +49,9 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
-}
 
+
+}
 dependencies {
 
     implementation("androidx.core:core-ktx:1.12.0")
@@ -133,6 +134,5 @@ dependencies {
     implementation("androidx.camera:camera-camera2:1.3.2") // Optional for camera2 extensions
     implementation("androidx.camera:camera-lifecycle:1.3.2")
     implementation("androidx.camera:camera-view:1.3.2") //
-
 
 }

@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.ui.components
+package com.brhn.xpnsr.activities
 
 import android.annotation.SuppressLint
 import android.net.Uri
@@ -13,6 +13,19 @@ import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.exoplayer2.ExoPlayer
 import com.google.android.exoplayer2.MediaItem
 import com.google.android.exoplayer2.ui.PlayerView
+
+class VideoPlayBackActivity : BaseActivity() {
+    @Composable
+    override fun ScreenContent(modifier: Modifier) {
+        val videoUrl =
+            "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+        VideoScreen(videoUri = videoUrl)
+    }
+
+    override fun getAppBarTitle(): String {
+        return "Video Playback"
+    }
+}
 
 @Composable
 fun VideoPlayer(videoUri: String) {

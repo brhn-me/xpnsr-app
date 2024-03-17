@@ -1,12 +1,10 @@
-package com.brhn.xpnsr.ui.activities
+package com.brhn.xpnsr.activities
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
@@ -38,9 +36,9 @@ import androidx.work.PeriodicWorkRequestBuilder
 import androidx.work.WorkManager
 import com.brhn.xpnsr.data.db.AppDatabase
 import com.brhn.xpnsr.data.getCategoryIcon
+import com.brhn.xpnsr.data.viewmodels.TransactionsVM
 import com.brhn.xpnsr.models.Transaction
 import com.brhn.xpnsr.models.TransactionType
-import com.brhn.xpnsr.data.viewmodels.TransactionsVM
 import com.brhn.xpnsr.workers.NotificationWorker
 import com.brhn.xpnsr.workers.ReminderWorker
 import java.util.concurrent.TimeUnit

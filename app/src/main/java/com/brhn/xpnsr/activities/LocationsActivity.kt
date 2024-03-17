@@ -1,5 +1,4 @@
-package com.brhn.xpnsr.ui.components
-
+package com.brhn.xpnsr.activities
 
 import android.content.Context
 import androidx.compose.foundation.layout.fillMaxSize
@@ -11,8 +10,21 @@ import org.osmdroid.config.Configuration
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
+import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+
+
+class LocationsActivity : BaseActivity() {
+    @Composable
+    override fun ScreenContent(modifier: Modifier) {
+        OpenStreetMapView()
+    }
+
+    override fun getAppBarTitle(): String {
+        return "Locations"
+    }
+}
 
 
 data class CityInfo(val name: String, val latitude: Double, val longitude: Double, val data: Int)
@@ -35,7 +47,7 @@ fun OpenStreetMapView(modifier: Modifier = Modifier.fillMaxSize()) {
             MapView(ctx).apply {
                 setTileSource(TileSourceFactory.MAPNIK)
                 setMultiTouchControls(true)
-                zoomController.setVisibility(org.osmdroid.views.CustomZoomButtonsController.Visibility.NEVER)
+                zoomController.setVisibility(CustomZoomButtonsController.Visibility.NEVER)
 
                 finlandCities.forEach { city ->
                     val marker = Marker(this)

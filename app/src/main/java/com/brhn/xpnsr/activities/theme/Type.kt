@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.ui.theme
+package com.brhn.xpnsr.activities.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

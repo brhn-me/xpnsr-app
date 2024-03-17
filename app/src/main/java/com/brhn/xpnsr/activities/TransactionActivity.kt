@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.ui.activities
+package com.brhn.xpnsr.activities
 
 import android.app.DatePickerDialog
 import android.os.Bundle

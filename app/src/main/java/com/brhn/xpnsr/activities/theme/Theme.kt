@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.ui.theme
+package com.brhn.xpnsr.activities.theme
 
 import android.app.Activity
 import android.os.Build
