@@ -11,8 +11,19 @@ class TransactionRepository(private val transactionDao: TransactionDao) {
         transactionDao.insert(transaction)
     }
 
-    suspend fun isDatabaseEmpty(): Boolean {
-        return transactionDao.countTransactions() == 0
+    suspend fun update(transaction: Transaction) {
+        transactionDao.update(transaction)
     }
 
+    fun getTransactionById(id: Long): LiveData<Transaction> {
+        return transactionDao.getTransactionById(id)
+    }
+
+    suspend fun getTransactionByIdSuspend(id: Long): Transaction? {
+        return transactionDao.getTransactionByIdSuspend(id)
+    }
+
+    suspend fun delete(transactionId: Long) {
+        return transactionDao.deleteById(transactionId)
+    }
 }

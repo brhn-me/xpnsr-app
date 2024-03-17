@@ -4,8 +4,6 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.Button
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Alignment
@@ -14,14 +12,12 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import coil.compose.rememberImagePainter
-import com.brhn.xpnsr.models.ProfileViewModel
-import com.brhn.xpnsr.ui.activities.ProfilePhotoActivity
+import com.brhn.xpnsr.data.viewmodels.ProfileVM
 
 @Composable
-fun ProfilePhotoScreen(viewModel: ProfileViewModel = viewModel()) {
+fun ProfilePhotoScreen(viewModel: ProfileVM = viewModel()) {
     val context = LocalContext.current
     val profileImageUri = viewModel.profileImageUri.collectAsState().value
 

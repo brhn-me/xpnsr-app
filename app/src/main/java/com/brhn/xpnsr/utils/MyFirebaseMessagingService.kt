@@ -15,7 +15,6 @@ import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.brhn.xpnsr.R
-import com.brhn.xpnsr.ui.activities.TransactionListActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
@@ -88,41 +87,41 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     }
 
     private fun sendNotification(messageBody: String) {
-        val intent = Intent(this, TransactionListActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        val requestCode = 0
-        val pendingIntent = PendingIntent.getActivity(
-            this,
-            requestCode,
-            intent,
-            PendingIntent.FLAG_IMMUTABLE,
-        )
 
-        val channelId = "fcm_default_channel"
-        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-            .setSmallIcon(R.mipmap.ic_launcher)
-            .setContentTitle("FCM Message")
-            .setContentText(messageBody)
-            .setAutoCancel(true)
-            .setSound(defaultSoundUri)
-            .setContentIntent(pendingIntent)
-
-        val notificationManager =
-            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
-
-        // Since android Oreo notification channel is needed.
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            val channel = NotificationChannel(
-                channelId,
-                "Channel human readable title",
-                NotificationManager.IMPORTANCE_DEFAULT,
-            )
-            notificationManager.createNotificationChannel(channel)
-        }
-
-        val notificationId = 0
-        notificationManager.notify(notificationId, notificationBuilder.build())
+//        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//        val requestCode = 0
+//        val pendingIntent = PendingIntent.getActivity(
+//            this,
+//            requestCode,
+//            intent,
+//            PendingIntent.FLAG_IMMUTABLE,
+//        )
+//
+//        val channelId = "fcm_default_channel"
+//        val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+//        val notificationBuilder = NotificationCompat.Builder(this, channelId)
+//            .setSmallIcon(R.mipmap.ic_launcher)
+//            .setContentTitle("FCM Message")
+//            .setContentText(messageBody)
+//            .setAutoCancel(true)
+//            .setSound(defaultSoundUri)
+//            .setContentIntent(pendingIntent)
+//
+//        val notificationManager =
+//            getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+//
+//        // Since android Oreo notification channel is needed.
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+//            val channel = NotificationChannel(
+//                channelId,
+//                "Channel human readable title",
+//                NotificationManager.IMPORTANCE_DEFAULT,
+//            )
+//            notificationManager.createNotificationChannel(channel)
+//        }
+//
+//        val notificationId = 0
+//        notificationManager.notify(notificationId, notificationBuilder.build())
     }
 
     companion object {

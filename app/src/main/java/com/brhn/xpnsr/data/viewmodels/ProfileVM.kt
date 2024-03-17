@@ -1,4 +1,4 @@
-package com.brhn.xpnsr.models
+package com.brhn.xpnsr.data.viewmodels
 
 import android.app.Application
 import android.net.Uri
@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class ProfileViewModel(application: Application) : AndroidViewModel(application) {
+class ProfileVM(application: Application) : AndroidViewModel(application) {
     private val _profileImageUri = MutableStateFlow<Uri?>(null)
     val profileImageUri: StateFlow<Uri?> = _profileImageUri
 

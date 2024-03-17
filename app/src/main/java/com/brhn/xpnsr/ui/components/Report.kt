@@ -25,8 +25,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
-import com.brhn.xpnsr.ui.activities.AddTransactionActivity
-import com.brhn.xpnsr.ui.activities.TransactionListActivity
+import com.brhn.xpnsr.ui.activities.TransactionActivity
 
 
 @Composable
@@ -59,7 +58,7 @@ fun Report(onBack: () -> Unit) {
     ) {
         Button(
             onClick = {
-                context.startActivity(Intent(context, TransactionListActivity::class.java))
+                //context.startActivity(Intent(context, TransactionListActivity::class.java))
             },
             modifier = Modifier
                 .weight(1f)
@@ -71,7 +70,7 @@ fun Report(onBack: () -> Unit) {
 
         Button(
             onClick = {
-                context.startActivity(Intent(context, AddTransactionActivity::class.java))
+                context.startActivity(Intent(context, TransactionActivity::class.java))
             },
             modifier = Modifier
                 .weight(1f)

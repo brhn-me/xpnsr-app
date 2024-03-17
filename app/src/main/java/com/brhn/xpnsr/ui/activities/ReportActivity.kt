@@ -27,9 +27,9 @@ class ReportActivity : ComponentActivity() {
 
     @SuppressLint("MissingSuperCall")
     override fun onBackPressed() {
-        val intent = Intent(this, TransactionListActivity::class.java)
-        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-        startActivity(intent)
-        finish()
+//        val intent = Intent(this, TransactionListActivity::class.java)
+//        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+//        startActivity(intent)
+//        finish()
     }
 }

@@ -5,6 +5,9 @@
     <uses-feature
         android:name="android.hardware.sensor.accelerometer"
         android:required="true" />
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
@@ -12,6 +15,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -40,7 +44,7 @@
         <!-- [END fcm_default_icon] -->
         <!-- [START fcm_default_channel] -->
         <activity
-            android:name=".ui.activities.TransactionListActivity"
+            android:name=".ui.activities.TransactionsActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,13 +52,18 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.activities.TransactionViewActivity" />
         <activity android:name=".ui.activities.TransactionDetailsActivity" />
-        <activity android:name=".ui.activities.AddTransactionActivity" />
+        <activity android:name=".ui.activities.TransactionActivity" />
         <activity android:name=".ui.activities.ReportActivity" />
         <activity android:name=".ui.activities.MapViewActivity" />
+        <activity android:name=".ui.activities.ProfilePhotoActivityOld" />
+        <activity android:name=".ui.activities.ProfilePhotoActivity" />
         <activity android:name=".ui.activities.VideoPlayActivity" />
         <activity android:name=".ui.activities.AnimationActivity" />
         <activity android:name=".ui.activities.ApiCallActivity" />
+        <activity android:name=".ui.activities.TransactionListActivity" />
+        <activity android:name=".ui.activities.TransactionsActivity2" />
 
         <service
             android:name=".utils.MyFirebaseMessagingService"

@@ -42,7 +42,6 @@ import com.brhn.xpnsr.models.Category
 import com.brhn.xpnsr.models.Transaction
 import com.brhn.xpnsr.models.TransactionType
 import com.brhn.xpnsr.ui.activities.ReportActivity
-import com.brhn.xpnsr.ui.activities.TransactionListActivity
 import kotlinx.coroutines.launch
 import java.text.SimpleDateFormat
 import java.util.Calendar
@@ -91,7 +90,7 @@ fun TransactionForm(
         ) {
             Button(
                 onClick = {
-                    context.startActivity(Intent(context, TransactionListActivity::class.java))
+
                 },
                 modifier = Modifier
                     .weight(1f)

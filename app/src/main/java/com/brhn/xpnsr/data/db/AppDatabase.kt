@@ -40,7 +40,7 @@ abstract class AppDatabase : RoomDatabase() {
                 val database = getDatabase(context)
                 val transactionDao = database.transactionDao()
 
-                if (transactionDao.countTransactions() == 0) { // Assuming this method exists
+                if (transactionDao.countTransactions() == 0L) { // Assuming this method exists
                     transactionDao.insertAll(getSampleTransactions())
                 }
             }

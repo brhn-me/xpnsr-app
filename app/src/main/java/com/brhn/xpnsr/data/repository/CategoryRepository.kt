@@ -67,4 +67,9 @@ object CategoryRepository { // or object CategoryUtil
     fun getCategoriesByType(type: TransactionType): List<Category> {
         return categories.filter { it.type == type }
     }
+
+    fun getCategoryIcon(categoryName: String): Int {
+        return categories.find { it.name == categoryName }?.icon
+            ?: R.drawable.money
+    }
 }

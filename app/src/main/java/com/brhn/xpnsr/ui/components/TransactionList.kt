@@ -19,7 +19,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.brhn.xpnsr.ui.activities.TransactionDetailsActivity
 import com.brhn.xpnsr.data.getCategoryIcon
 import com.brhn.xpnsr.models.Transaction
 import com.brhn.xpnsr.models.TransactionType
@@ -33,10 +32,10 @@ fun TransactionList(
     LazyColumn(modifier = modifier) {
         items(transactions) { transaction ->
             TransactionItem(transaction) {
-                val intent = Intent(context, TransactionDetailsActivity::class.java)
-                intent.putExtra("TRANSACTION_DATA", transaction)
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                context.startActivity(intent)
+//                val intent = Intent(context, TransactionDetailsActivity::class.java)
+//                intent.putExtra("TRANSACTION_DATA", transaction)
+//                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+//                context.startActivity(intent)
             }
         }
     }
